@@ -1,0 +1,1 @@
+// group id attributes of buttons into array
