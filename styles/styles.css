@@ -8,6 +8,15 @@ html {
     background-color: black;
 }
 
+.calculator-cntr {
+    display: flex;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
 button {
     font-size: 3rem;
     border-radius: 100%;
