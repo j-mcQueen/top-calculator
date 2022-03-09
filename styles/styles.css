@@ -30,6 +30,7 @@ html {
 }
 
 button {
+    font-family: "Fredoka", sans-serif;
     font-size: 3rem;
     border-radius: 100%;
     border: none;
