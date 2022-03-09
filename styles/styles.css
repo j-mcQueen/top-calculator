@@ -8,7 +8,12 @@ html {
     background-color: black;
 }
 
-.calculator-cntr {
+.calculator {
+    display: flex;
+    justify-content: center;
+}
+
+.col-cntr {
     display: flex;
 }
 
