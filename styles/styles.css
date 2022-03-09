@@ -9,11 +9,26 @@ html {
 }
 
 button {
-    font-size: 4.8rem;
+    font-size: 3rem;
     border-radius: 100%;
+    border: none;
     padding: 10px;
+    margin: 5px;
     width: 80px;
     height: 80px;
+}
+
+#undo, #clear, #hundredth {
+    background-color: rgb(156, 156, 156);
+}
+
+#zero, #one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #decimal {
+    background-color: rgb(80, 80, 80);
+    color: white;
+}
+
+#divide, #multiply, #subtract, #add, #calculate {
+    background-color: rgb(19, 228, 130)
 }
 
 button:hover {
