@@ -1,5 +1,5 @@
 html {
-    font-family: "Fredoka", sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 10px;
     min-width: 300px;
     overflow-x: hidden;
@@ -30,7 +30,7 @@ html {
 }
 
 button {
-    font-family: "Fredoka", sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     font-size: 3rem;
     border-radius: 100%;
     border: none;
