@@ -22,11 +22,18 @@ html {
     flex-direction: column;
 }
 
+.calculation {
+    border-radius: 10px;
+    background-color: rgb(192, 192, 162);
+    margin: 0 0 3% 0;
+    padding: 15px 0;
+}
+
 .calculation p {
     font-size: 3rem;
     text-align: right;
     padding-right: 10%;
-    color: white;
+    margin-bottom: 0;
 }
 
 button {
