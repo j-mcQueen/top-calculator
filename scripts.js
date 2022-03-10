@@ -40,8 +40,8 @@ const calculator = () => {
                 divide(x, y);
                 break;
 
-            case "&#37;":
-                hundredth(x, y);
+            case "%":
+                hundredth(x);
                 break;
         }
     }
@@ -57,8 +57,11 @@ const calculator = () => {
                 display.textContent = 0;
                 break;
 
-            case "&#37;":
+            case "%":
                 // hundredth
+                let operator = "%";
+                let x = display.textContent;
+                operate(x, operator);
                 break;
             
             case "&#247;":
