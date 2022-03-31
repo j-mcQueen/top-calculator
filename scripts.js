@@ -64,27 +64,6 @@ const calculator = () => {
                 let x = display.textContent;
                 operate(x, operator);
                 break;
-            
-            case "&#247;":
-                // divide
-                operator = "&247;";
-                display.textContent = character;
-                break;
-            
-            case "&#215;":
-                // multiply
-                operator = "&#215;";
-                break;
-
-            case "&#8722;":
-                // subtract
-                operator = "&#8722;";
-                break;
-
-            case "&plus;":
-                // add
-                operator = "&plus;";
-                break;
 
             case "&equals;":
                 // calculate
