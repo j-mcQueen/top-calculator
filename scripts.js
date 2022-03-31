@@ -48,6 +48,7 @@ const calculator = () => {
 
     btns.forEach(btn => btn.addEventListener("click", (e) => {
         let character = e.target.value;
+        let operator = "";
 
         switch (character) {
             case "AC":
@@ -59,26 +60,30 @@ const calculator = () => {
 
             case "%":
                 // hundredth
-                let operator = "%";
+                operator = "%";
                 let x = display.textContent;
                 operate(x, operator);
                 break;
             
             case "&#247;":
                 // divide
+                operator = "&247;";
                 display.textContent = character;
                 break;
             
             case "&#215;":
                 // multiply
+                operator = "&#215;";
                 break;
 
             case "&#8722;":
                 // subtract
+                operator = "&#8722;";
                 break;
 
             case "&plus;":
                 // add
+                operator = "&plus;";
                 break;
 
             case "&equals;":
