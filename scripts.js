@@ -19,7 +19,7 @@ const calculator = () => {
     }
 
     const hundredth = (a) => {
-        console.log(a / 100);
+        display.textContent = (a / 100);
     }
 
     const operate = (x, operator, y) => {
