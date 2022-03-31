@@ -24,11 +24,11 @@ const calculator = () => {
 
     const operate = (x, operator, y) => {
         switch (operator) {
-            case "&plus;":
+            case "+":
                 add(x, y);
                 break;
             
-            case "&#8722;":
+            case "-":
                 subtract(x, y);
                 break;
 
@@ -47,6 +47,8 @@ const calculator = () => {
     }
 
     btns.forEach(btn => btn.addEventListener("click", (e) => {
+        if (display.textContent === "0") { display.textContent = "" };
+
         let character = e.target.value;
         let operator = "";
 
@@ -65,12 +67,14 @@ const calculator = () => {
                 operate(x, operator);
                 break;
 
-            case "&equals;":
+            case "=":
                 // calculate
+                let expression = display.textContent;
+                console.log(expression);
                 break;
 
             default:
-                display.textContent = character;
+                display.textContent += character;
         }
     }));
 }
