@@ -27,6 +27,7 @@ html {
     background-color: rgb(192, 192, 162);
     margin: 0 0 3% 0;
     padding: 15px 0;
+    min-height: 70px;
 }
 
 .calculation p {
