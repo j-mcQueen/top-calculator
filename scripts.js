@@ -71,7 +71,6 @@ const calculator = () => {
                 break;
 
             case "operator":
-                e.target.style.backgroundColor = "white";
                 break;
             
             case "number":
