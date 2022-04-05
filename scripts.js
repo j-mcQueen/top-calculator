@@ -71,6 +71,19 @@ const calculator = () => {
                 break;
 
             case "operator":
+                switch (character) { // which operator button?
+                    case "&#247;":
+                        break;
+
+                    case "&#215;":
+                        break;
+
+                    case "-":
+                        break;
+                    
+                    case "+":
+                        break;
+                }
                 break;
             
             case "number":
