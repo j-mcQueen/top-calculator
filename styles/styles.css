@@ -58,7 +58,7 @@ button {
 }
 
 #divide, #multiply, #subtract, #add, #calculate {
-    background-color: rgb(19, 228, 130)
+    background-color: rgb(19, 228, 130);
 }
 
 button:hover {
