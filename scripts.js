@@ -47,34 +47,44 @@ const calculator = () => {
     }
 
     btns.forEach(btn => btn.addEventListener("click", (e) => {
-        if (display.textContent === "0") { display.textContent = "" };
-
         let character = e.target.value;
+        let name = e.target.className;
         let operator = "";
 
-        switch (character) {
-            case "AC":
+        switch (name) {
+            case "action":
+                switch (character) { // which action button?
+                    case "AC":
+                        break;
+                    
+                    case "CE":
+                        display.textContent = 0;
+                        break;
+                }
                 break;
             
-            case "CE":
-                display.textContent = 0;
-                break;
-
-            case "%":
+            case "hundredth":
                 // hundredth
                 operator = "%";
                 let x = display.textContent;
                 operate(x, operator);
                 break;
 
-            case "=":
+            case "operator":
+                e.target.style.backgroundColor = "white";
+                break;
+            
+            case "number":
+                if (display.textContent === "0") { display.textContent = "" };
+
+                display.textContent += character;
+                break;
+
+            case "equals":
                 // calculate
                 let expression = display.textContent;
                 console.log(expression);
                 break;
-
-            default:
-                display.textContent += character;
         }
     }));
 }
