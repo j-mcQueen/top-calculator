@@ -63,5 +63,8 @@ button {
 
 button:hover {
     cursor: pointer;
+}
+
+.operator:active {
     opacity: 0.8;
 }
