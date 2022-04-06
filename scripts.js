@@ -1,6 +1,7 @@
 const calculator = () => {
     const display = document.querySelector(".calculation p");
     const btns = document.querySelectorAll("button");
+    let expressionArray = [];
 
     const add = (a, b) => {
         console.log(a + b);
@@ -71,23 +72,41 @@ const calculator = () => {
                 break;
 
             case "operator":
+                // activate operator buttons - can this be optimised further? 
+                e.target.classList.toggle("active");
+                if (e.target.classList.contains("active")) {
+                    e.target.setAttribute("style", "background-color: white; transition: 0.4s ease;");
+                }
+
+                e.target.addEventListener("focusout", () => {
+                    if (e.target.classList.contains("active")) {
+                        e.target.classList.toggle("active");
+                        e.target.setAttribute("style", "background-color: rgb(19, 228, 130); transition: 0.4s ease;");
+                    }
+                });
+
+                expressionArray.push(display.textContent); // push first number into array
+
                 switch (character) { // which operator button?
                     case "&#247;":
+                        // divide
                         break;
 
                     case "&#215;":
+                        // multiply
                         break;
 
                     case "-":
                         break;
                     
                     case "+":
+                        console.log(expressionArray);
                         break;
                 }
                 break;
             
             case "number":
-                if (display.textContent === "0") { display.textContent = "" };
+                if (display.textContent === "0") { display.textContent = "" }
 
                 display.textContent += character;
                 break;
@@ -95,7 +114,9 @@ const calculator = () => {
             case "equals":
                 // calculate
                 let expression = display.textContent;
-                console.log(expression);
+                let a = expressionArray[0]
+                console.log(expressionArray);
+                expressionArray = [];
                 break;
         }
     }));
