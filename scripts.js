@@ -4,7 +4,7 @@ const calculator = () => {
     let expressionArray = [];
 
     const add = (a, b) => {
-        console.log(a + b);
+        console.log( (+a) + (+b) );
     }
 
     const subtract = (a, b) => {
@@ -83,6 +83,8 @@ const calculator = () => {
                         e.target.classList.toggle("active");
                         e.target.setAttribute("style", "background-color: rgb(19, 228, 130); transition: 0.4s ease;");
                     }
+
+                    display.textContent = "";
                 });
 
                 expressionArray.push(display.textContent); // push first number into array
@@ -100,7 +102,7 @@ const calculator = () => {
                         break;
                     
                     case "+":
-                        console.log(expressionArray);
+                        expressionArray.push("+");
                         break;
                 }
                 break;
@@ -113,10 +115,13 @@ const calculator = () => {
 
             case "equals":
                 // calculate
+                expressionArray.push(display.textContent);
                 let expression = display.textContent;
-                let a = expressionArray[0]
-                console.log(expressionArray);
-                expressionArray = [];
+                let a = expressionArray[0];
+                let operator = expressionArray[1];
+                let b = expressionArray[2];
+
+                operate(a, operator, b);
                 break;
         }
     }));
