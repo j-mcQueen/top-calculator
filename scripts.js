@@ -128,3 +128,5 @@ const calculator = () => {
 }
 
 calculator();
+
+// instead of an array, consider using an object to contain everything you need to use the operate() function. This makes it easier to reset the values when the equals button is pressed.
