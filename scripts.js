@@ -52,6 +52,28 @@ const calculator = () => {
         let character = e.target.value;
         let name = e.target.className;
 
+        const componentsTest = () => {
+            components.a === undefined ? components.a = display.textContent : components.b = display.textContent;
+            // can you think of a more efficient way to abide by the DRY principle?
+        };
+
+        const highlightButton = () => {
+            // activate operator buttons - can this be optimised further? 
+            e.target.classList.toggle("active");
+            if (e.target.classList.contains("active")) {
+                e.target.setAttribute("style", "background-color: white; transition: 0.4s ease;");
+            }
+
+            e.target.addEventListener("focusout", () => {
+                if (e.target.classList.contains("active")) {
+                    e.target.classList.toggle("active");
+                    e.target.setAttribute("style", "background-color: rgb(19, 228, 130); transition: 0.4s ease;");
+                }
+
+                display.textContent = "";
+            });
+        };
+
         switch (name) {
             case "action":
                 switch (character) { // which action button?
@@ -72,22 +94,8 @@ const calculator = () => {
                 break;
 
             case "operator":
-                // activate operator buttons - can this be optimised further? 
-                e.target.classList.toggle("active");
-                if (e.target.classList.contains("active")) {
-                    e.target.setAttribute("style", "background-color: white; transition: 0.4s ease;");
-                }
-
-                e.target.addEventListener("focusout", () => {
-                    if (e.target.classList.contains("active")) {
-                        e.target.classList.toggle("active");
-                        e.target.setAttribute("style", "background-color: rgb(19, 228, 130); transition: 0.4s ease;");
-                    }
-
-                    display.textContent = "";
-                });
-
-                components.a === undefined ? components.a = display.textContent : components.b = display.textContent;
+                highlightButton();
+                componentsTest();
 
                 switch (character) { // which operator button?
                     case "/":
@@ -121,9 +129,8 @@ const calculator = () => {
 
             case "equals":
                 // calculate
-                // components.a === undefined ? components.a = display.textContent : components.b = display.textContent;
-                // console.log(components);
-                // operate(components.a, components.operator, components.b);
+                componentsTest();
+                operate(components.a, components.operator, components.b);
                 break;
         }
     }));
