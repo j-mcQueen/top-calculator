@@ -82,6 +82,9 @@ const calculator = () => {
                     
                     case "CE":
                         display.textContent = 0;
+                        components.a = null;
+                        components.operator = null;
+                        components.b = null;
                         break;
                 }
                 break;
