@@ -4,7 +4,8 @@ const calculator = () => {
     let components = {};
 
     const add = (a, b) => {
-        console.log( (+a) + (+b) );
+        display.textContent = ((+a) + (+b));
+        components.a = display.textContent;
     }
 
     const subtract = (a, b) => {
@@ -33,11 +34,11 @@ const calculator = () => {
                 subtract(x, y);
                 break;
 
-            case "&#215;":
+            case "*":
                 multiply(x, y);
                 break;
             
-            case "&#247;":
+            case "/":
                 divide(x, y);
                 break;
 
@@ -61,12 +62,13 @@ const calculator = () => {
                         display.textContent = 0;
                         break;
                 }
+                break;
             
             case "hundredth":
                 // hundredth
-                operator = "%";
+                components.operator = "%";
                 let x = display.textContent;
-                operate(x, operator);
+                operate(x, components.operator);
                 break;
 
             case "operator":
@@ -88,30 +90,28 @@ const calculator = () => {
                 components.a === undefined ? components.a = display.textContent : components.b = display.textContent;
 
                 switch (character) { // which operator button?
-                    case "&#247;":
+                    case "/":
                         // divide
-                        components.operator = "&#247;";
+                        components.operator = "/";
                         break;
 
-                    case "&#215;":
+                    case "*":
                         // multiply
-                        components.operator = "&#215;";
+                        components.operator = "*";
                         break;
 
-                    case "&#8722;":
-                        // subtract
+                    case "-":
                         components.operator = "-";
                         break;
                     
                     case "+":
-                        // add
                         components.operator = "+";
-
                         if (components.b !== undefined) {
-                            console.log(components);
+                            operate(components.a, components.operator, components.b);
                         }
                         break;
                 }
+                break;
             
             case "number":
                 if (display.textContent === "0") { display.textContent = "" }
@@ -121,12 +121,9 @@ const calculator = () => {
 
             case "equals":
                 // calculate
+                // components.a === undefined ? components.a = display.textContent : components.b = display.textContent;
                 // console.log(components);
-
-                // reset value of a to result of previous calculation
-                // reset operator value
-
-                // operate(a, operator, b);
+                // operate(components.a, components.operator, components.b);
                 break;
         }
     }));
@@ -134,9 +131,4 @@ const calculator = () => {
 
 calculator();
 
-// instead of an array, consider using an object to contain everything you need to use the operate() function. This makes it easier to reset the values when the equals button is pressed (see Programming with Mosh's 1 hour course on objects for a reset method)
-
-// array of objects
-// a, operator, b
-// perform calculation
-// result stored as a in next object
+// instead of an array, consider using an object to contain everything you need to use the operate() function. This makes it easier to reset the values when the equals button is pressed.
