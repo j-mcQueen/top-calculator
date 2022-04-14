@@ -52,6 +52,11 @@ const calculator = () => {
 
     const hundredth = (a) => {
         display.textContent = (a / 100);
+        components.a = (a / 100);
+        if (components.operator !== undefined) {
+            delete components.operator;
+        }
+        console.log(components);
     }
 
     const operate = (x, operator, y) => {
