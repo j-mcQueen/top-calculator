@@ -8,7 +8,7 @@ const calculator = () => {
 
         if (components.a === undefined) {
             components.a = display.textContent;
-        } else if ((components.a !== undefined) && (components.operator !== undefined) && (components.b) === undefined) {
+        } else if ((components.a !== undefined) && (components.operator !== undefined) && (components.b === undefined)) {
             components.b = display.textContent;
         } else if ((components.a !== undefined) && (components.operator === undefined) && (components.b === undefined)) {
             return;
@@ -21,11 +21,14 @@ const calculator = () => {
         if (components.b !== undefined) {
             delete components.b;
         }
-        console.log(components);
     }
 
     const subtract = (a, b) => {
-        console.log(a - b);
+        display.textContent = ((+a) - (+b));
+        components.a = ((+a) - (+b));
+        if (components.b !== undefined) {
+            delete components.b;
+        }
     }
 
     const multiply = (a, b) => {
@@ -127,12 +130,25 @@ const calculator = () => {
                         break;
 
                     case "-":
+                        if ((components.operator !== "-") && (components.b !== undefined)) {
+                            operate(components.a, components.operator, components.b);
+                        }
+
                         components.operator = "-";
+
+                        if (components.b !== undefined) {
+                            operate(components.a, components.operator, components.b);
+                        }
                         break;
                     
                     case "+":
+                        if ((components.operator !== "+") && (components.b !== undefined)) {
+                            operate(components.a, components.operator, components.b);
+                        }
+
                         components.operator = "+";
                         console.log(components);
+
                         if (components.b !== undefined) {
                             operate(components.a, components.operator, components.b);
                         }
