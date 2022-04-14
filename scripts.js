@@ -36,7 +36,16 @@ const calculator = () => {
     }
 
     const divide = (a, b) => {
-        console.log(a / b);
+        console.log(components);
+        if (components.b = 0) {
+            display.textContent = "ERROR";
+        } else {
+            display.textContent = ((+a) / (+b));
+            components.a = ((+a) / (+b));
+            if (components.b !== undefined) {
+                delete components.b;
+            }
+        }
     }
 
     const hundredth = (a) => {
@@ -121,7 +130,15 @@ const calculator = () => {
                 switch (character) { // which operator button?
                     case "/":
                         // divide
+                        if ((components.operator !== "/") && (components.b !== undefined)) {
+                            operate(components.a, components.operator, components.b);
+                        }
+
                         components.operator = "/";
+
+                        if (components.b !== undefined) {
+                            operate(components.a, components.operator, components.b);
+                        }
                         break;
 
                     case "*":
