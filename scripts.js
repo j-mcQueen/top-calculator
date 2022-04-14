@@ -3,9 +3,25 @@ const calculator = () => {
     const btns = document.querySelectorAll("button");
     let components = {};
 
+    const componentsTest = () => { // can you think of a more efficient way to abide by the DRY principle?
+        // components.a === undefined ? components.a = display.textContent : components.b = display.textContent;
+
+        if (components.a === undefined) {
+            components.a = display.textContent;
+        } else if ((components.a !== undefined) && (components.operator !== undefined) && (components.b) === undefined) {
+            components.b = display.textContent;
+        } else if ((components.a !== undefined) && (components.operator === undefined) && (components.b === undefined)) {
+            return;
+        }
+    };
+
     const add = (a, b) => {
         display.textContent = ((+a) + (+b));
-        components.a = display.textContent;
+        components.a = ((+a) + (+b));
+        if (components.b !== undefined) {
+            delete components.b;
+        }
+        console.log(components);
     }
 
     const subtract = (a, b) => {
@@ -52,11 +68,6 @@ const calculator = () => {
         let character = e.target.value;
         let name = e.target.className;
 
-        const componentsTest = () => {
-            components.a === undefined ? components.a = display.textContent : components.b = display.textContent;
-            // can you think of a more efficient way to abide by the DRY principle?
-        };
-
         const highlightButton = () => {
             // activate operator buttons - can this be optimised further? 
             e.target.classList.toggle("active");
@@ -72,7 +83,14 @@ const calculator = () => {
 
                 display.textContent = "";
             });
-        };
+        }
+
+        const reset = () => {
+            display.textContent = 0;
+            delete components.a;
+            delete components.operator;
+            delete components.b;
+        }
 
         switch (name) {
             case "action":
@@ -81,10 +99,7 @@ const calculator = () => {
                         break;
                     
                     case "CE":
-                        display.textContent = 0;
-                        components.a = null;
-                        components.operator = null;
-                        components.b = null;
+                        reset();
                         break;
                 }
                 break;
@@ -117,6 +132,7 @@ const calculator = () => {
                     
                     case "+":
                         components.operator = "+";
+                        console.log(components);
                         if (components.b !== undefined) {
                             operate(components.a, components.operator, components.b);
                         }
@@ -134,11 +150,12 @@ const calculator = () => {
                 // calculate
                 componentsTest();
                 operate(components.a, components.operator, components.b);
+                delete components.operator;
+                delete components.b;
+                console.log(components);
                 break;
         }
     }));
 }
 
 calculator();
-
-// instead of an array, consider using an object to contain everything you need to use the operate() function. This makes it easier to reset the values when the equals button is pressed.
