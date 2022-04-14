@@ -3,15 +3,23 @@ const calculator = () => {
     const btns = document.querySelectorAll("button");
     let components = {};
 
-    const componentsTest = () => { // can you think of a more efficient way to abide by the DRY principle?
+    const componentsTest = () => { // checks if operands have been defined and sets them if tests are false
         if (components.a === undefined) {
             components.a = display.textContent;
         } else if ((components.a !== undefined) && (components.operator !== undefined) && (components.b === undefined)) {
             components.b = display.textContent;
         } else if ((components.a !== undefined) && (components.operator === undefined) && (components.b === undefined)) {
             return;
-        }
+        } // can you think of a better way to tidy this up?
     };
+
+    const manageOperator = (val) => { // operates if components object has been filled, sets the operator otherwise
+        if ((components.operator !== val) && (components.b !== undefined)) {
+            operate(components.a, components.operator, components.b);
+        }
+
+        components.operator = val;
+    }
 
     const add = (a, b) => {
         display.textContent = ((+a) + (+b));
@@ -38,15 +46,10 @@ const calculator = () => {
     }
 
     const divide = (a, b) => {
-        console.log(components);
-        if (components.b = 0) {
-            display.textContent = "ERROR";
-        } else {
-            display.textContent = ((+a) / (+b));
-            components.a = ((+a) / (+b));
-            if (components.b !== undefined) {
-                delete components.b;
-            }
+        display.textContent = ((+a) / (+b));
+        components.a = ((+a) / (+b));
+        if (components.b !== undefined) {
+            delete components.b;
         }
     }
 
@@ -137,52 +140,20 @@ const calculator = () => {
                 switch (character) { // which operator button?
                     case "/":
                         // divide
-                        if ((components.operator !== "/") && (components.b !== undefined)) {
-                            operate(components.a, components.operator, components.b);
-                        }
-
-                        components.operator = "/";
-
-                        if (components.b !== undefined) {
-                            operate(components.a, components.operator, components.b);
-                        }
+                        manageOperator("/");
                         break;
 
                     case "*":
                         // multiply
-                        if ((components.operator !== "*") && (components.b !== undefined)) {
-                            operate(components.a, components.operator, components.b);
-                        }
-
-                        components.operator = "*";
-
-                        if (components.b !== undefined) {
-                            operate(components.a, components.operator, components.b);
-                        }
+                        manageOperator("*");
                         break;
 
                     case "-":
-                        if ((components.operator !== "-") && (components.b !== undefined)) {
-                            operate(components.a, components.operator, components.b);
-                        }
-
-                        components.operator = "-";
-
-                        if (components.b !== undefined) {
-                            operate(components.a, components.operator, components.b);
-                        }
+                        manageOperator("-");
                         break;
                     
                     case "+":
-                        if ((components.operator !== "+") && (components.b !== undefined)) {
-                            operate(components.a, components.operator, components.b);
-                        }
-
-                        components.operator = "+";
-
-                        if (components.b !== undefined) {
-                            operate(components.a, components.operator, components.b);
-                        }
+                        manageOperator("+")
                         break;
                 }
                 break;
