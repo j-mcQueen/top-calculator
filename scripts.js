@@ -4,8 +4,6 @@ const calculator = () => {
     let components = {};
 
     const componentsTest = () => { // can you think of a more efficient way to abide by the DRY principle?
-        // components.a === undefined ? components.a = display.textContent : components.b = display.textContent;
-
         if (components.a === undefined) {
             components.a = display.textContent;
         } else if ((components.a !== undefined) && (components.operator !== undefined) && (components.b === undefined)) {
@@ -32,7 +30,11 @@ const calculator = () => {
     }
 
     const multiply = (a, b) => {
-        console.log(a * b);
+        display.textContent = ((+a) * (+b));
+        components.a = ((+a) * (+b));
+        if (components.b !== undefined) {
+            delete components.b;
+        }
     }
 
     const divide = (a, b) => {
@@ -143,7 +145,15 @@ const calculator = () => {
 
                     case "*":
                         // multiply
+                        if ((components.operator !== "*") && (components.b !== undefined)) {
+                            operate(components.a, components.operator, components.b);
+                        }
+
                         components.operator = "*";
+
+                        if (components.b !== undefined) {
+                            operate(components.a, components.operator, components.b);
+                        }
                         break;
 
                     case "-":
@@ -164,7 +174,6 @@ const calculator = () => {
                         }
 
                         components.operator = "+";
-                        console.log(components);
 
                         if (components.b !== undefined) {
                             operate(components.a, components.operator, components.b);
