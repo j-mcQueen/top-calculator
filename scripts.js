@@ -20,36 +20,32 @@ const calculator = () => {
         components.operator = val;
     }
 
+    const removeB = () => { // permits calculations to only ever be done in pairs
+        if (components.b !== undefined) delete components.b;
+    }
+
     const add = (a, b) => {
         display.textContent = ((+a) + (+b));
         components.a = ((+a) + (+b));
-        if (components.b !== undefined) {
-            delete components.b;
-        }
+        removeB();
     }
 
     const subtract = (a, b) => {
         display.textContent = ((+a) - (+b));
         components.a = ((+a) - (+b));
-        if (components.b !== undefined) {
-            delete components.b;
-        }
+        removeB();
     }
 
     const multiply = (a, b) => {
         display.textContent = ((+a) * (+b));
         components.a = ((+a) * (+b));
-        if (components.b !== undefined) {
-            delete components.b;
-        }
+        removeB();
     }
 
     const divide = (a, b) => {
         display.textContent = ((+a) / (+b));
         components.a = ((+a) / (+b));
-        if (components.b !== undefined) {
-            delete components.b;
-        }
+        removeB();
     }
 
     const hundredth = (a) => {
@@ -95,7 +91,7 @@ const calculator = () => {
                 e.target.setAttribute("style", "background-color: white; transition: 0.4s ease;");
             }
 
-            e.target.addEventListener("focusout", () => {
+            e.target.addEventListener("focusout", () => { // is focusout the correct event listener?
                 if (e.target.classList.contains("active")) {
                     e.target.classList.toggle("active");
                     e.target.setAttribute("style", "background-color: rgb(19, 228, 130); transition: 0.4s ease;");
@@ -124,9 +120,10 @@ const calculator = () => {
                 }
                 break;
             
-            case "hundredth":
+            case "hundredth": // needs fix - pressing this after the second operand causes the calculation to break
                 components.operator = "%";
                 let x = display.textContent;
+                console.log(components);
                 operate(x, components.operator);
                 break;
 
