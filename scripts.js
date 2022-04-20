@@ -82,6 +82,7 @@ const calculator = () => {
     }
 
     btns.forEach(btn => btn.addEventListener("click", (e) => {
+        let decimal = document.getElementById("decimal");
         let character = e.target.value;
         let name = e.target.className;
 
@@ -150,15 +151,14 @@ const calculator = () => {
                 break;
             
             case "number":
-                // if (display.textContent === "0") display.textContent = "";
-                if (display.textContent === "0" && character !== ".") {
+                display.textContent.includes(".") ? decimal.disabled = true : decimal.disabled = false;
+
+                if (display.textContent === "0" && character !== ".") { // ensures 0 decimals are properly formatted
                     display.textContent.replace("0", character);
                     display.textContent = character;
                 } else {
                     display.textContent += character;
                 }
-
-                // display.textContent += character;
                 break;
 
             case "equals":
