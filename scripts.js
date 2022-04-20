@@ -11,13 +11,12 @@ const calculator = () => {
         } else if ((components.a !== undefined) && (components.operator === undefined) && (components.b === undefined)) {
             return;
         } // can you think of a better way to tidy this up?
-    };
+    }
 
     const manageOperator = (val) => { // operates if components object has been filled, sets the operator otherwise
-        if ((components.operator !== val) && (components.b !== undefined)) {
+        if ((components.operator !== undefined) && (components.b !== undefined)) {
             operate(components.a, components.operator, components.b);
         }
-
         components.operator = val;
     }
 
@@ -59,7 +58,6 @@ const calculator = () => {
         if (components.operator !== undefined) {
             delete components.operator;
         }
-        console.log(components);
     }
 
     const operate = (x, operator, y) => {
@@ -127,7 +125,6 @@ const calculator = () => {
                 break;
             
             case "hundredth":
-                // hundredth
                 components.operator = "%";
                 let x = display.textContent;
                 operate(x, components.operator);
@@ -139,12 +136,10 @@ const calculator = () => {
 
                 switch (character) { // which operator button?
                     case "/":
-                        // divide
                         manageOperator("/");
                         break;
 
                     case "*":
-                        // multiply
                         manageOperator("*");
                         break;
 
@@ -153,7 +148,7 @@ const calculator = () => {
                         break;
                     
                     case "+":
-                        manageOperator("+")
+                        manageOperator("+");
                         break;
                 }
                 break;
@@ -170,7 +165,6 @@ const calculator = () => {
                 operate(components.a, components.operator, components.b);
                 delete components.operator;
                 delete components.b;
-                console.log(components);
                 break;
         }
     }));
