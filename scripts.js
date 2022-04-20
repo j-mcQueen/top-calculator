@@ -150,9 +150,15 @@ const calculator = () => {
                 break;
             
             case "number":
-                if (display.textContent === "0") { display.textContent = "" }
+                // if (display.textContent === "0") display.textContent = "";
+                if (display.textContent === "0" && character !== ".") {
+                    display.textContent.replace("0", character);
+                    display.textContent = character;
+                } else {
+                    display.textContent += character;
+                }
 
-                display.textContent += character;
+                // display.textContent += character;
                 break;
 
             case "equals":
