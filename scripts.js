@@ -49,10 +49,11 @@ const calculator = () => {
     }
 
     const hundredth = (a) => {
-        display.textContent = (a / 100);
-        components.a = (a / 100);
-        if (components.operator !== undefined) {
-            delete components.operator;
+        display.textContent = ((+a) / 100);
+        if (components.a === undefined) {
+            components.a = ((+a) / 100);
+        } else if (components.a !== undefined && components.b === undefined) {
+            components.b = ((+a) / 100);
         }
     }
 
@@ -121,10 +122,8 @@ const calculator = () => {
                 break;
             
             case "hundredth": // needs fix - pressing this after the second operand causes the calculation to break
-                components.operator = "%";
                 let x = display.textContent;
-                console.log(components);
-                operate(x, components.operator);
+                operate(x, "%");
                 break;
 
             case "operator":
