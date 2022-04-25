@@ -14,7 +14,13 @@ const calculator = () => {
     }
 
     const manageOperator = (val) => { // operates if components object has been filled, sets the operator otherwise
-        if ((components.operator !== undefined) && (components.b !== undefined)) {
+        if (components.operator !== val && components.b === "") { // for cases where incorrect operator has been selected
+            components.operator = val;
+            display.textContent = components.a;
+            delete components.b;
+        }
+
+        if (components.operator !== undefined && components.b !== undefined && components.operator === val) {
             operate(components.a, components.operator, components.b);
         }
         components.operator = val;
@@ -52,8 +58,12 @@ const calculator = () => {
         display.textContent = ((+a) / 100);
         if (components.a === undefined) {
             components.a = ((+a) / 100);
-        } else if (components.a !== undefined && components.b === undefined) {
-            components.b = ((+a) / 100);
+        } else if (components.a !== undefined && components.operator === undefined && components.b === undefined) {
+            if (a = (components.a / 100)) { // if % button has been pressed twice in a row
+                components.a = ((+a) / 100);
+            } else {
+                components.b = ((+a) / 100);
+            }
         }
     }
 
@@ -87,18 +97,17 @@ const calculator = () => {
         let name = e.target.className;
 
         const highlightButton = () => {
-            // activate operator buttons - can this be optimised further? 
+            // activate operator buttons - can this be optimised further?
             e.target.classList.toggle("active");
             if (e.target.classList.contains("active")) {
                 e.target.setAttribute("style", "background-color: white; transition: 0.4s ease;");
             }
 
-            e.target.addEventListener("focusout", () => { // is focusout the correct event listener?
+            e.target.addEventListener("blur", () => { // is focusout the correct event listener? calculation breaks on focusout
                 if (e.target.classList.contains("active")) {
                     e.target.classList.toggle("active");
                     e.target.setAttribute("style", "background-color: rgb(19, 228, 130); transition: 0.4s ease;");
                 }
-
                 display.textContent = "";
             });
         }
