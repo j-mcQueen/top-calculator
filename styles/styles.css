@@ -50,13 +50,14 @@ button {
     background-color: rgb(156, 156, 156);
 }
 
-#zero, #one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #decimal {
-    background-color: rgb(80, 80, 80);
+.number {
+    background-color: rgb(57, 57, 57);
     color: white;
 }
 
 #divide, #multiply, #subtract, #add, #calculate {
-    background-color: rgb(19, 228, 130);
+    background-color: rgb(221, 151, 0);
+    color: white;
 }
 
 button:hover {
