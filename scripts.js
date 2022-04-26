@@ -11,7 +11,7 @@ const calculator = () => {
         } else if ((components.a !== undefined) && (components.operator === undefined) && (components.b === undefined)) {
             return;
         } // can you think of a better way to tidy this up?
-    }
+    };
 
     const manageOperator = (val) => { // operates if components object has been filled, sets the operator otherwise
         if (components.operator !== val && components.b === "") { // for cases where incorrect operator has been selected
@@ -24,11 +24,11 @@ const calculator = () => {
             operate(components.a, components.operator, components.b);
         }
         components.operator = val;
-    }
+    };
 
     const removeB = () => { // permits calculations to only ever be done in pairs
         if (components.b !== undefined) delete components.b;
-    }
+    };
 
     const changeSign = (current) => {
         if (current.includes("-")) {
@@ -42,31 +42,31 @@ const calculator = () => {
                 components.a = `-${current}`;
             }
         }
-    }
+    };
 
     const add = (a, b) => {
         display.textContent = ((+a) + (+b));
         components.a = ((+a) + (+b));
         removeB();
-    }
+    };
 
     const subtract = (a, b) => {
         display.textContent = ((+a) - (+b));
         components.a = ((+a) - (+b));
         removeB();
-    }
+    };
 
     const multiply = (a, b) => {
         display.textContent = ((+a) * (+b));
         components.a = ((+a) * (+b));
         removeB();
-    }
+    };
 
     const divide = (a, b) => {
         display.textContent = ((+a) / (+b));
         components.a = ((+a) / (+b));
         removeB();
-    }
+    };
 
     const hundredth = (a) => {
         display.textContent = ((+a) / 100);
@@ -79,7 +79,7 @@ const calculator = () => {
                 components.b = display.textContent;
             }
         }
-    }
+    };
 
     const operate = (x, operator, y) => {
         switch (operator) {
@@ -103,7 +103,7 @@ const calculator = () => {
                 hundredth(x);
                 break;
         }
-    }
+    };
 
     btns.forEach(btn => btn.addEventListener("click", (e) => {
         let decimal = document.getElementById("decimal");
@@ -124,14 +124,14 @@ const calculator = () => {
                 }
                 display.textContent = "";
             });
-        }
+        };
 
         const reset = () => {
             display.textContent = 0;
             delete components.a;
             delete components.operator;
             delete components.b;
-        }
+        };
 
         switch (name) {
             case "action":
