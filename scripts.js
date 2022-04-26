@@ -20,7 +20,7 @@ const calculator = () => {
             delete components.b;
         }
 
-        if (components.operator !== undefined && components.b !== undefined && components.operator === val) {
+        if (components.operator !== undefined && components.b !== undefined) {
             operate(components.a, components.operator, components.b);
         }
         components.operator = val;
@@ -28,6 +28,20 @@ const calculator = () => {
 
     const removeB = () => { // permits calculations to only ever be done in pairs
         if (components.b !== undefined) delete components.b;
+    }
+
+    const changeSign = (current) => {
+        if (current.includes("-")) {
+            display.textContent = current.substr(1);
+            if ((components.a !== undefined) && (components.operator === undefined) && (components.b === undefined)) {
+                components.a = current.substr(1); // reflect changes in display
+            }
+        } else if (current.includes("-") === false) {
+            display.textContent = `-${current}`;
+            if ((components.a !== undefined) && (components.operator === undefined) && (components.b === undefined)) {
+                components.a = `-${current}`;
+            }
+        }
     }
 
     const add = (a, b) => {
@@ -57,12 +71,12 @@ const calculator = () => {
     const hundredth = (a) => {
         display.textContent = ((+a) / 100);
         if (components.a === undefined) {
-            components.a = ((+a) / 100);
+            components.a = display.textContent;
         } else if (components.a !== undefined && components.operator === undefined && components.b === undefined) {
             if (a = (components.a / 100)) { // if % button has been pressed twice in a row
-                components.a = ((+a) / 100);
+                components.a = display.textContent;
             } else {
-                components.b = ((+a) / 100);
+                components.b = display.textContent;
             }
         }
     }
@@ -122,7 +136,8 @@ const calculator = () => {
         switch (name) {
             case "action":
                 switch (character) { // which action button?
-                    case "AC":
+                    case "+/-":
+                        changeSign(display.textContent);
                         break;
                     
                     case "CE":
