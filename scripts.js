@@ -114,13 +114,13 @@ const calculator = () => {
             // activate operator buttons - can this be optimised further?
             e.target.classList.toggle("active");
             if (e.target.classList.contains("active")) {
-                e.target.setAttribute("style", "background-color: white; transition: 0.4s ease;");
+                e.target.setAttribute("style", "background-color: white; color: rgb(221, 151, 0); transition: 0.4s ease;");
             }
 
-            e.target.addEventListener("blur", () => { // is focusout the correct event listener? calculation breaks on focusout
+            e.target.addEventListener("blur", () => { // is blur/ focusout the correct event listener? calculation disappears on focusout
                 if (e.target.classList.contains("active")) {
                     e.target.classList.toggle("active");
-                    e.target.setAttribute("style", "background-color: rgb(19, 228, 130); transition: 0.4s ease;");
+                    e.target.setAttribute("style", "background-color: rgb(221, 151, 0); color: white; transition: 0.4s ease;");
                 }
                 display.textContent = "";
             });
