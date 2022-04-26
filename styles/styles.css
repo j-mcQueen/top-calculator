@@ -8,9 +8,15 @@ html {
     background-color: black;
 }
 
+body {
+    margin: 0;
+}
+
 .calculator {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .col-cntr {
