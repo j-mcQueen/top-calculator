@@ -1,4 +1,4 @@
-# top-calculator
+# calculator
 An in-browser calculator for performing basic mathematical calculations, modelled on the iPhone calculator app. This project was developed as part of The Odin Project's Foundations course capstone project - check out my [live version](https://silverwish.github.io/top-calculator/).
 
 ## new things I've learned
