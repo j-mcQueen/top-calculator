@@ -180,6 +180,8 @@ const calculator = () => {
                 if (display.textContent === "0" && character !== ".") { // ensures 0 decimals are properly formatted
                     display.textContent.replace("0", character);
                     display.textContent = character;
+                } else if (display.textContent.includes("Infinity")) {
+                    display.textContent = "Infinity";
                 } else {
                     display.textContent += character;
                 }
