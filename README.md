@@ -16,3 +16,7 @@ An in-browser calculator for performing basic mathematical calculations, modelle
 - HTML
 - CSS
 - JavaScript
+
+## notes
+- currently there is no keyboard support for this calculator 
+- using the calculator on mobile causes it to malfunction
