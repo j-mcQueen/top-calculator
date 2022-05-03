@@ -20,4 +20,4 @@ An in-browser calculator for performing basic mathematical calculations, modelle
 ## known bugs/ areas for improvement
 - lack of keyboard support
 - malfunction on mobile/ tablet - likely a result of the role the "blur" event listener plays in highlighting operator buttons
-- code readability needs improved - the purpose of some functions may not be initially self-evident
+- code readability needs improved - the purpose of some functions may not be initially self-evident (investigate the use of web forms to update UI elements)
