@@ -17,6 +17,7 @@ An in-browser calculator for performing basic mathematical calculations, modelle
 - CSS
 - JavaScript
 
-## notes
-- currently there is no keyboard support for this calculator 
-- using the calculator on mobile causes it to malfunction
+## known bugs/ areas for improvement
+- lack of keyboard support
+- malfunction on mobile/ tablet - likely a result of the role the "blur" event listener plays in highlighting operator buttons
+- code readability needs improved - the purpose of some functions may not be initially self-evident
